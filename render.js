@@ -11,10 +11,12 @@ export function render(vnode){
   let node = document.createElement(vnode.nodeName)
 
   for(let name in Object((vnode.attributes || {}))){
-    node.setAttribute(name, vnode.attributes[name])
+    if (typeof vnode.attributes[name] === "function") {
+      node[name] = eval(`(${vnode.attributes[name]})`)
+    } else {
+      node.setAttribute(name, vnode.attributes[name])
+    }
   }
-
-  debugger
 
   for(let i=0; i<(vnode.children || []).length; i++){
     node.appendChild(render(vnode.children[i]))

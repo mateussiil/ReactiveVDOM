@@ -3,15 +3,14 @@ import { stringToObject } from './utils.js'
 
 /**
  * 
- * @param {string} jsx 
+ * @param {string} jsxString 
+ * @returns {{ nodeName: string, attributes: {[key:string]: any} & {id: string | number}, children: Array<string | { nodeName: string, attributes: any, children: any[] }> }} children 
  */
-export function parse(jsx){
-  if (!jsx) return h(jsx)
+export function parse(jsxString){
+  if (!jsxString) return h(jsxString)
 
   const jsxRegex = /<([A-Za-z][A-Za-z0-9]*)\s*([^>]*)>((?:[^<]*|<(?!\/?\1>))*)<\/\1>/;
   const textRegex = /^[^<>]+$/;
-
-  const jsxString = jsx
 
   const matches = jsxRegex.exec(jsxString)
 
@@ -45,5 +44,7 @@ export function parse(jsx){
  * @returns 
  */
 function attributesToObject(str) {
-  return stringToObject(str)
+  const obj = stringToObject(str)
+  
+  return obj
 }
