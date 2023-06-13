@@ -10,14 +10,13 @@ export function render(vnode){
 
   let node = document.createElement(vnode.nodeName)
 
-  console.log(Object(vnode.attributes))
-
-  for(let name in Object(vnode.attributes)){
-
+  for(let name in Object((vnode.attributes || {}))){
     node.setAttribute(name, vnode.attributes[name])
   }
 
-  for(let i=0; i<vnode.children.length;i++){
+  debugger
+
+  for(let i=0; i<(vnode.children || []).length; i++){
     node.appendChild(render(vnode.children[i]))
   }
 
