@@ -15,3 +15,19 @@ export function stringToObject(str) {
   return obj;
 }
 
+export function findNodeByKey(key, node) {
+  if (node.attributes?.id === key) {
+    return node;
+  }
+
+  for (const child of (node.children || [])) {
+    if (typeof child !== 'string') {
+      const foundNode = findNodeByKey(key, child);
+      if (foundNode) {
+        return foundNode;
+      }
+    }
+  }
+
+  return null;
+}
