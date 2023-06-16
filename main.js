@@ -17,22 +17,22 @@ function updateCount(newCount) {
 const App = (props) => {
   const { list, count = 0 } = props;
 
-  return h('div', { class: 'app', id: "app" }, null, 
-    h('div', { class: 'app', id: "1" },null,
-      h('h1', { id: "h1_v1" },null, 'Simple vDOM'),
-      h('h1', { id: "h1_count" },null, `Count ${count}`),
+  return h('div', { class: 'app', id: "app" },  
+    h('div', { class: 'app', id: "1" },
+      h('h1', { id: "h1_v1" }, 'Simple vDOM'),
+      h('h1', { id: "h1_count" }, `Count ${count}`),
       h(
-        'ul', { id: "ul" },null,
-        ...list.map(item => h('li', { id: `li_${item}` },null, item))
+        'ul', { id: "ul" },
+        ...list.map(item => h('li', { id: `li_${item}` }, item))
       ),
       h('button', {
         id: "updateCount",
         onclick: () => updateCount(count + 1)
-      },null, 'Atualize o count'),
+      }, 'Atualize o count'),
       h('button', {
         id: "addList",
         onclick: () => updateList([...list, 'oi'])
-      },null, 'Adicione na lista')
+      }, 'Adicione na lista')
     )
   );
 };

@@ -5,10 +5,12 @@
  * @param {Array<string | { nodeName: string, attributes: any, children: Array<string | { nodeName: string, attributes: any, children: any[] }> }>} children 
  * @returns {{ nodeName: string, attributes: any, children: Array<string | { nodeName: string, attributes: any, children: any[] }> }} children 
  */
-export function h(nodeName, attributes, props, ...children){
+export function h(nodeName, attributes, ...children){
   if(!attributes) attributes = {}
 
-  return { nodeName, attributes, props, children }
+  // vue usa ^/: para definir se é props/attributes
+
+  return { nodeName, attributes, children }
 }
 
 /**
@@ -18,5 +20,5 @@ export function h(nodeName, attributes, props, ...children){
 export function createComponentNode(fn, props){
   window.currentComponent = fn 
 
-  return h('div', null, { ...props }, fn(props));
+  return h('div', { ...props }, fn(props));
 }

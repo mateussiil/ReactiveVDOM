@@ -31,7 +31,7 @@ export function parse(jsxString){
       children.push(parse(content[i]))
     }
 
-    return h(tag, attributes, null, ...children)
+    return h(tag, attributes, ...children)
   }else{
     const match = jsxString.match(textRegex);
     return match ? match[0].trim() : "";

@@ -14,4 +14,4 @@ parsedObject
   .push(h('button', {
     id: "button",
     onclick: (e) => { console.log('oi') }
-  }, null, 'Clique'))
+  }, 'Clique'))
